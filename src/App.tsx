@@ -30,7 +30,7 @@ export default function App() {
                         </div>
                     </div>
                     <div className="flex items-center gap-3 text-white text-[35px]">
-                        <FaQuestion onClick={() => setHowToPlay(true)} className="bg-gray-700/60 p-2 rounded-[5px] cursor-pointer hover:bg-gray-700 transition duration-500" />
+                        <FaQuestion onClick={() => setHowToPlay(!howToPlay)} className="bg-gray-700/60 p-2 rounded-[5px] cursor-pointer hover:bg-gray-700 transition duration-500" />
                         <IoSettingsSharp className="bg-gray-700/60 p-2 rounded-[5px] cursor-pointer hover:bg-gray-700 transition duration-500" />
                     </div>
                 </nav>
