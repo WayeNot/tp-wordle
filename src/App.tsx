@@ -5,7 +5,10 @@ import { BiSolidArchiveOut, BiStats } from 'react-icons/bi';
 import { FaQuestion } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 
+
 import HowToPlay from '../src/components/HowToPlay';
+import Grid from '../src/components/Gride';
+
 
 export default function App() {
     const [howToPlay, setHowToPlay] = useState(false);
@@ -36,6 +39,7 @@ export default function App() {
                 </nav>
             </div>
             {howToPlay && <HowToPlay/>}
+            <Grid />
         </div>
     );
 }
