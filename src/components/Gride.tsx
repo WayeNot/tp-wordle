@@ -39,8 +39,8 @@ export default function Grid(props : data) {
         if(props.del){
             tab.pop()
         }
-        
-        if(props.enter){
+
+        if(props.enter && tab.length == props.word.length){
             const verif = new Verif(props.lettre, props.word, i);
 
             if(verif.isInTheWord()) {
@@ -59,7 +59,7 @@ export default function Grid(props : data) {
         <>
            <div className="flex items-center justify-center gap-5">
                 {[tab].map((v,k) => (
-                    <div key={k} className="bg-gray-500 w-20 h-20 flex justify-center items-center text-[40px] uppercase mt-10">{v}</div>
+                    <div key={k} className="bg-gray-500 w-20 h-20 flex justify-center items-center text-[40px] uppercase mt-20 mb-30">{v}</div>
                 ))}
            </div>
         </>
