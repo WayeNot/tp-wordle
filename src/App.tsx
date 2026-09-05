@@ -12,7 +12,7 @@ export default function App() {
     return (
         <div className="App">
             <Navbar/>
-            <Grid />
+            <Grid lettre='t' word='toile' enter={true} del={false} />
             <Keyboard/>
         </div>
     );
