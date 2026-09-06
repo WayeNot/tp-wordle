@@ -32,15 +32,20 @@ export default function Grid(props : data) {
 
     let tab : string[] = [];
 
-    for(let i = 0; i > tab.length; i ++) {
-    
-        tab.push(props.lettre)
+    // Dés qu'on recoit une lettre :
 
-        if(props.del){
-            tab.pop()
-        }
+    tab.push(props.lettre)
 
-        if(props.enter && tab.length == props.word.length){
+    if(props.del){
+        tab.pop()
+    }
+
+    // Quand il clique sur entrer :
+
+    if(props.enter && tab.length == props.word.length){
+
+        for(let i = 0; i > tab.length; i ++) {
+
             const verif = new Verif(props.lettre, props.word, i);
 
             if(verif.isInTheWord()) {
