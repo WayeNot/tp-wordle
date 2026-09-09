@@ -6,9 +6,11 @@ import Grid from '../src/components/Gride';
 import Navbar from './components/Navbar';
 import Keyboard from './components/Keyboard';
 import ModalWin from './components/ModalWin';
+import ModalPlay from './components/ModalPlay';
 
 export default function App() {
     const [history, setHistory] = useState<string[]>([]);
+    const [startGame, setStartGame] = useState(true);
     const [currentWord, setCurrentWord] = useState("");
     const [word, setWord] = useState("")
     const [displayWin, setDisplayWin] = useState(false)
@@ -31,6 +33,7 @@ export default function App() {
 
     const newGame = () => {
         setDisplayWin(false)
+        setStartGame(false)
         setCurrentWord("")
         setHistory([])
     }
@@ -56,6 +59,7 @@ export default function App() {
             <Navbar />
             <Grid history={history} maxAttempts={6} currentWord={currentWord} word={word} />
             <Keyboard history={history} word={word} addLetter={(v: string) => addLetter(v)} onReturn={deleteLetter} onEnter={handleEnter} />
+            {startGame && <ModalPlay onPlay={newGame}/>}
             {displayWin && <ModalWin onPlay={newGame}/>}
         </div>
     );
