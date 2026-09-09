@@ -1,17 +1,19 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Grid from '../src/components/Gride';
 import Navbar from './components/Navbar';
 import Keyboard from './components/Keyboard';
 import ModalWin from './components/ModalWin';
+import Api from './components/API';
 
 export default function App() {
     const [history, setHistory] = useState<string[]>([]);
     const [currentWord, setCurrentWord] = useState("");
-    const [word, setWord] = useState("toile")
+    const [word, setWord] = useState("")
     const [displayWin, setDisplayWin] = useState(false)
+    const apiKey = import.meta.env.VITE_API_KEY
 
     const addLetter = (v: string) => {
         currentWord.length < word.length && setCurrentWord(prev => prev + v);
@@ -34,9 +36,26 @@ export default function App() {
         setHistory([])
     }
 
+    useEffect(() => {
+        fetch('/api/word?lang=fr', {
+            headers: {
+                'x-api-key' : apiKey
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setWord(data.word)
+                console.log(data.word)
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, [displayWin == true]);
+
     return (
         <div className="App">
             <Navbar />
+            <Api sendWord={(e : string) => setWord(e)} />
             <Grid history={history} maxAttempts={6} currentWord={currentWord} word={word} />
             <Keyboard history={history} word={word} addLetter={(v: string) => addLetter(v)} onReturn={deleteLetter} onEnter={handleEnter} />
             {displayWin && <ModalWin onPlay={newGame}/>}
