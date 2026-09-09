@@ -6,7 +6,7 @@ import Grid from '../src/components/Gride';
 import Navbar from './components/Navbar';
 import Keyboard from './components/Keyboard';
 import ModalWin from './components/ModalWin';
-import ModalLose from './components/ModalLose';
+import ModalLoose from './components/ModalLoose';
 import ModalPlay from './components/ModalPlay';
 
 export default function App() {
@@ -64,7 +64,7 @@ export default function App() {
             <Keyboard history={history} word={word} addLetter={(v: string) => addLetter(v)} onReturn={deleteLetter} onEnter={handleEnter} />
             {startGame && <ModalPlay onPlay={newGame}/>}
             {displayWin && <ModalWin onPlay={newGame}/>}
-            {displayLose && <ModalLose onPlay={newGame}/>}
+            {displayLose && <ModalLoose onPlay={newGame}/>}
         </div>
     );
 }

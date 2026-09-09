@@ -4,7 +4,7 @@ type props = {
     onPlay: () => void;
 }
 
-export default function ModalLose({ onPlay }: props) {
+export default function ModalLoose({ onPlay }: props) {
 
     document.onkeydown = function (e) {
         e.key === "Enter" && onPlay();
