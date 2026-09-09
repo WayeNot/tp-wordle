@@ -7,6 +7,5 @@ import Api from './components/API.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
-    <Api />
   </StrictMode>,
 )
