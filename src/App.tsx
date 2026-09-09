@@ -7,17 +7,18 @@ import Navbar from './components/Navbar';
 import Keyboard from './components/Keyboard';
 import ModalWin from './components/ModalWin';
 
-
 export default function App() {
     const [history, setHistory] = useState<string[]>([]);
     const [currentWord, setCurrentWord] = useState("");
     const [word, setWord] = useState("toile")
+    const [displayWin, setDisplayWin] = useState(false)
 
     const addLetter = (v: string) => {
         currentWord.length < word.length && setCurrentWord(prev => prev + v);
     }
 
     const handleEnter = () => {
+        currentWord.length === word.length && currentWord.toLowerCase() === word.toLowerCase() && setDisplayWin(true)
         if (currentWord.length !== word.length ) { return }
         setHistory(prev => [ ...prev, currentWord ]);
         setCurrentWord("");
@@ -28,7 +29,7 @@ export default function App() {
     }
 
     const newGame = () => {
-        setWord("test");
+        setDisplayWin(false)
         setCurrentWord("")
         setHistory([])
     }
@@ -38,7 +39,7 @@ export default function App() {
             <Navbar />
             <Grid history={history} maxAttempts={6} currentWord={currentWord} word={word} />
             <Keyboard history={history} word={word} addLetter={(v: string) => addLetter(v)} onReturn={deleteLetter} onEnter={handleEnter} />
-            {currentWord.toLowerCase() === word.toLowerCase() && <ModalWin onPlay={newGame}/>}
+            {displayWin && <ModalWin onPlay={newGame}/>}
         </div>
     );
 }
