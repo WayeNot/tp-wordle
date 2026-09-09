@@ -35,6 +35,7 @@ export default function App() {
     }
 
     const newGame = () => {
+        setDisplayLose(false)
         setDisplayWin(false)
         setStartGame(false)
         setCurrentWord("")
