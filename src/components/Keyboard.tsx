@@ -45,6 +45,7 @@ export default function Keyboard({ history, word, addLetter, onReturn, onEnter }
     }
 
     document.onkeydown = function (e) {
+        if (e.key.length > 1 && e.key !== "Backspace" && e.key !== "Enter") {return};
         if (e.key === "Enter") {
             onEnter();
             return;
@@ -53,7 +54,6 @@ export default function Keyboard({ history, word, addLetter, onReturn, onEnter }
             onReturn();
             return;
         }
-        if (e.key.length > 1) {};
         /[a-zA-Z]+/g.test(e.key) && addLetter(e.key)
     }
 
