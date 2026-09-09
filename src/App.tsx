@@ -6,12 +6,14 @@ import Grid from '../src/components/Gride';
 import Navbar from './components/Navbar';
 import Keyboard from './components/Keyboard';
 import ModalWin from './components/ModalWin';
+import ModalLose from './components/ModalLose';
 
 export default function App() {
     const [history, setHistory] = useState<string[]>([]);
     const [currentWord, setCurrentWord] = useState("");
     const [word, setWord] = useState("")
     const [displayWin, setDisplayWin] = useState(false)
+    const [displayLose, setDisplayLose] = useState(false)
     const apiKey = import.meta.env.VITE_API_KEY
 
     const addLetter = (v: string) => {
@@ -19,6 +21,7 @@ export default function App() {
     }
 
     const handleEnter = () => {
+        if(history.length === 5) {setDisplayLose(true); return};
         currentWord.length === word.length && currentWord.toLowerCase() === word.toLowerCase() && setDisplayWin(true)
         if (currentWord.length !== word.length ) { return }
         setHistory(prev => [ ...prev, currentWord ]);
@@ -57,6 +60,7 @@ export default function App() {
             <Grid history={history} maxAttempts={6} currentWord={currentWord} word={word} />
             <Keyboard history={history} word={word} addLetter={(v: string) => addLetter(v)} onReturn={deleteLetter} onEnter={handleEnter} />
             {displayWin && <ModalWin onPlay={newGame}/>}
+            {displayLose && <ModalLose onPlay={newGame}/>}
         </div>
     );
 }
