@@ -6,7 +6,6 @@ import Grid from '../src/components/Gride';
 import Navbar from './components/Navbar';
 import Keyboard from './components/Keyboard';
 import ModalWin from './components/ModalWin';
-import Api from './components/API';
 
 export default function App() {
     const [history, setHistory] = useState<string[]>([]);
@@ -55,7 +54,6 @@ export default function App() {
     return (
         <div className="App">
             <Navbar />
-            <Api sendWord={(e : string) => setWord(e)} />
             <Grid history={history} maxAttempts={6} currentWord={currentWord} word={word} />
             <Keyboard history={history} word={word} addLetter={(v: string) => addLetter(v)} onReturn={deleteLetter} onEnter={handleEnter} />
             {displayWin && <ModalWin onPlay={newGame}/>}
