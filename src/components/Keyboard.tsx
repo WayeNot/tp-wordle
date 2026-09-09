@@ -44,6 +44,19 @@ export default function Keyboard({ history, word, addLetter, onReturn, onEnter }
         return status;
     }
 
+    document.onkeydown = function (e) {
+        if (e.key === "Enter") {
+            onEnter();
+            return;
+        }
+        if (e.key === "Backspace") {
+            onReturn();
+            return;
+        }
+        if (e.key.length > 1) {};
+        /[a-zA-Z]+/g.test(e.key) && addLetter(e.key)
+    }
+
     const keyClass = "w-[30px] h-[40px] shrink-0 rounded-[5px] flex items-center justify-center cursor-pointer transition duration-500";
 
     return (
